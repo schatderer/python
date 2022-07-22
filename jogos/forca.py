@@ -6,8 +6,8 @@ def jogar():
     imprime_mensagem_abertura()
     palavra_secreta = carrega_palavra_secreta()
 
-    letras_acertadas = inicializa_letras_acertadas(palavra_secreta)
-    print(letras_acertadas)
+    letras_forca = inicializa_letras_forca(palavra_secreta)
+    imprime_letras_forca(letras_forca)
 
     enforcou = False
     acertou = False
@@ -18,15 +18,15 @@ def jogar():
         chute = pede_chute()
 
         if(chute in palavra_secreta):
-            marca_chute_correto(chute, letras_acertadas, palavra_secreta)
+            marca_chute_correto(chute, letras_forca, palavra_secreta)
         else:
             erros += 1
             desenha_forca(erros)
 
         enforcou = erros == 7
-        acertou = "_" not in letras_acertadas
+        acertou = "_" not in letras_forca
 
-        print(letras_acertadas)
+        imprime_letras_forca(letras_forca)
 
     if(acertou):
         imprime_mensagem_vencedor()
@@ -120,11 +120,11 @@ def imprime_mensagem_perdedor(palavra_secreta):
     print("     \_         _/         ")
     print("       \_______/           ")
 
-def marca_chute_correto(chute, letras_acertadas, palavra_secreta):
+def marca_chute_correto(chute, letras_forca, palavra_secreta):
     index = 0
     for letra in palavra_secreta:
         if (chute == letra):
-            letras_acertadas[index] = letra
+            letras_forca[index] = letra
         index += 1
 
 def pede_chute():
@@ -132,8 +132,8 @@ def pede_chute():
     chute = chute.strip().upper()
     return chute
 
-def inicializa_letras_acertadas(palavra):
-    return ["_" for letra in palavra]
+def inicializa_letras_forca(palavra_secreta):
+    return ["_" for letra in palavra_secreta]
 
 def imprime_mensagem_abertura():
     print("*********************************")
@@ -147,6 +147,11 @@ def carrega_palavra_secreta():
     palavra_secreta = elemento.xpath('//div[@style="font-size:3em; color:#6200C5;"]/text()')
     palavra_secreta = palavra_secreta[0].strip().upper()
     return palavra_secreta
+
+def imprime_letras_forca(letras_forca):
+    for letra in letras_forca:
+        print(letra, end=" ")
+    print("")
 
 
 if(__name__ == "__main__"):
