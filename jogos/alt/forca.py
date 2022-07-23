@@ -12,11 +12,11 @@ def jogar():
     acertou = False
     erros = 0
 
-    while(not enforcou and not acertou):
+    while not enforcou and not acertou:
 
         chute = pede_chute()
 
-        if(chute in palavra_secreta):
+        if chute in palavra_secreta:
             marca_chute_correto(chute, letras_acertadas, palavra_secreta)
         else:
             erros += 1
@@ -27,7 +27,7 @@ def jogar():
 
         print(letras_acertadas)
 
-    if(acertou):
+    if acertou:
         imprime_mensagem_vencedor()
     else:
         imprime_mensagem_perdedor(palavra_secreta)
@@ -37,52 +37,51 @@ def desenha_forca(erros):
     print("  _______     ")
     print(" |/      |    ")
 
-    if(erros == 1):
-        print (" |      (_)   ")
-        print (" |            ")
-        print (" |            ")
-        print (" |            ")
+    if erros == 1:
+        print(" |      (_)   ")
+        print(" |            ")
+        print(" |            ")
+        print(" |            ")
 
-    if(erros == 2):
-        print (" |      (_)   ")
-        print (" |      \     ")
-        print (" |            ")
-        print (" |            ")
+    if erros == 2:
+        print(" |      (_)   ")
+        print(" |      \     ")
+        print(" |            ")
+        print(" |            ")
 
-    if(erros == 3):
-        print (" |      (_)   ")
-        print (" |      \|    ")
-        print (" |            ")
-        print (" |            ")
+    if erros == 3:
+        print(" |      (_)   ")
+        print(" |      \|    ")
+        print(" |            ")
+        print(" |            ")
 
-    if(erros == 4):
-        print (" |      (_)   ")
-        print (" |      \|/   ")
-        print (" |            ")
-        print (" |            ")
+    if erros == 4:
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |            ")
+        print(" |            ")
 
-    if(erros == 5):
-        print (" |      (_)   ")
-        print (" |      \|/   ")
-        print (" |       |    ")
-        print (" |            ")
+    if erros == 5:
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |            ")
 
-    if(erros == 6):
-        print (" |      (_)   ")
-        print (" |      \|/   ")
-        print (" |       |    ")
-        print (" |      /     ")
+    if erros == 6:
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |      /     ")
 
-    if (erros == 7):
-        print (" |      (_)   ")
-        print (" |      \|/   ")
-        print (" |       |    ")
-        print (" |      / \   ")
+    if erros == 7:
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |      / \   ")
 
     print(" |            ")
     print("_|___         ")
     print()
-
 
 
 def imprime_mensagem_vencedor():
@@ -119,25 +118,30 @@ def imprime_mensagem_perdedor(palavra_secreta):
     print("     \_         _/         ")
     print("       \_______/           ")
 
+
 def marca_chute_correto(chute, letras_acertadas, palavra_secreta):
     index = 0
     for letra in palavra_secreta:
-        if (chute == letra):
+        if chute == letra:
             letras_acertadas[index] = letra
         index += 1
+
 
 def pede_chute():
     chute = input("Qual letra? ")
     chute = chute.strip().upper()
     return chute
 
+
 def inicializa_letras_acertadas(palavra):
     return ["_" for letra in palavra]
 
+
 def imprime_mensagem_abertura():
-    print("*********************************")
-    print("***Bem vindo ao jogo da Forca!***")
-    print("*********************************")
+    print("#################################")
+    print("###Bem vindo ao jogo da Forca!###")
+    print("#################################")
+
 
 def carrega_palavra_secreta():
     with open("palavras.txt", encoding="utf-8", mode="r") as arquivo:
@@ -152,5 +156,5 @@ def carrega_palavra_secreta():
     return palavra_secreta
 
 
-if(__name__ == "__main__"):
+if __name__ == "__main__":
     jogar()
